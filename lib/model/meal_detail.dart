@@ -5,22 +5,6 @@ enum Complexity { Simple, Hard, Challenging }
 
 class MealDetail {
   final String id;
-
-  const MealDetail(
-      {@required this.id,
-      @required this.steps,
-      @required this.categories,
-      @required this.title,
-      @required this.affordability,
-      @required this.complexity,
-      @required this.imageUrl,
-      @required this.duration,
-      @required this.ingredients,
-      @required this.isGlutenFree,
-      @required this.isVegan,
-      @required this.isVegetarian,
-      @required this.isLactoseFree});
-
   final List<String> steps;
   final List<String> categories;
   final String title;
@@ -38,4 +22,20 @@ class MealDetail {
   final bool isVegetarian;
 
   final bool isLactoseFree;
+
+  const MealDetail(
+      {@required this.id,
+      @required this.steps,
+      @required this.categories,
+      @required this.title,
+      @required this.affordability,
+      @required this.complexity,
+      @required this.imageUrl,
+      @required this.duration,
+      @required this.ingredients,
+      @required this.isGlutenFree,
+      @required this.isVegan,
+      @required this.isVegetarian,
+      @required this.isLactoseFree,
+      });
 }

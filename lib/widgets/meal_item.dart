@@ -1,13 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import '../screens/meal_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../model/meal_detail.dart';
+import '../screens/meal_detail_screen.dart';
 
 class MealItem extends StatelessWidget {
   final MealDetail mealDetail;
+  final Function handler;
 
-  MealItem(this.mealDetail);
+  MealItem(this.mealDetail, this.handler);
 
   String get complexityText {
     switch (mealDetail.complexity) {
@@ -47,7 +48,11 @@ class MealItem extends StatelessWidget {
       arguments: {
         'meal': mealDetail,
       },
-    );
+    ).then((onValue) {
+      if (onValue != null) {
+        handler(onValue);
+      }
+    });
   }
 
   @override

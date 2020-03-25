@@ -1,29 +1,62 @@
-import '../widgets/meal_item.dart';
 import 'package:flutter/material.dart';
 
 import '../model/dummy_data.dart';
+import '../model/meal_detail.dart';
+import '../widgets/meal_item.dart';
 
-class CategoryDetailScreen extends StatelessWidget {
+class CategoryDetailScreen extends StatefulWidget {
   static const routeName = '/category-details';
 
-  // CategoryDetailScreen(this.id,this.title);
+  @override
+  _CategoryDetailScreenState createState() => _CategoryDetailScreenState();
+}
+
+class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
+  String categoryTitle;
+  List<MealDetail> meals;
+  bool _loadedInitData = false;
+
+  void _deleteMeal(String id) {
+    setState(() {
+      meals.removeWhere((test) {
+        return test.id == id;
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    if(!_loadedInitData) {
+      final routeArgs =
+      ModalRoute
+          .of(context)
+          .settings
+          .arguments as Map<String, String>;
+      categoryTitle = routeArgs['title'];
+      final categoryId = routeArgs['id'];
+      meals = DUMMY_MealDetailS.where((meal) {
+        return meal.categories.contains(categoryId);
+      }).toList();
+      _loadedInitData= true;
+    }
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final routeArgs =
-        ModalRoute.of(context).settings.arguments as Map<String, String>;
-    final categoryTitle = routeArgs['title'];
-    final categoryId = routeArgs['id'];
-    final meals = DUMMY_MealDetailS.where((meal) {
-      return meal.categories.contains(categoryId);
-    }).toList();
     return Scaffold(
         appBar: AppBar(
           title: Text(categoryTitle),
         ),
         body: ListView.builder(
           itemBuilder: (ctx, index) {
-            return MealItem(meals[index]);
+            return MealItem(meals[index], _deleteMeal);
           },
           itemCount: meals.length,
         ));
