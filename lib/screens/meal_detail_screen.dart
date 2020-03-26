@@ -6,6 +6,7 @@ class MealDetailScreen extends StatelessWidget {
   static const routeNameMeal = '/meal-details';
   final Function toggleFavorite;
   final Function isFavorite;
+
   MealDetailScreen(this.toggleFavorite, this.isFavorite);
 
   @override
@@ -93,9 +94,28 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(
+        child: Material(
+          elevation: isFavorite(selectedMeal.id) ? 0.0 : 2.0,
+          borderRadius: BorderRadius.circular(20.0),
+          child: Container(
+            height: 40.0,
+            width: 40.0,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.0),
+                color: !isFavorite(selectedMeal.id)
+                    ? Colors.grey.withOpacity(0.2)
+                    : Colors.white),
+            child: Center(
+              child: !isFavorite(selectedMeal.id)
+                  ? Icon(Icons.favorite_border)
+                  : Icon(Icons.favorite, color: Colors.red),
+            ),
+          ),
+        )
+        /* child: Icon(
           isFavorite(selectedMeal.id) ? Icons.star : Icons.star_border,
-        ),
+        )*/
+        ,
         onPressed: () => toggleFavorite(selectedMeal.id),
       ),
     );
