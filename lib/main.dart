@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Cook Book',
       theme: ThemeData(
-        primarySwatch: Colors.amber,
+        primarySwatch: Colors.green,
         accentColor: Colors.pink,
         canvasColor: Color.fromRGBO(255, 254, 229, 1),
         fontFamily: 'Raleway',

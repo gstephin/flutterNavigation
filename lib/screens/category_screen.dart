@@ -1,8 +1,18 @@
-import 'package:daily_meals/model/dummy_data.dart';
-import 'package:daily_meals/widgets/category_item.dart';
+import '../util/kf_drawer.dart';
+import '../model/dummy_data.dart';
+import '../widgets/category_item.dart';
 import 'package:flutter/material.dart';
 
-class CategoryScreen extends StatelessWidget {
+class CategoryScreen extends KFDrawerContent {
+  CategoryScreen({
+    Key key,
+  });
+
+  @override
+  _CategoryScreenState createState() => _CategoryScreenState();
+}
+
+class _CategoryScreenState extends State<CategoryScreen> {
   int getColorHexFromStr(String colorStr) {
     colorStr = "FF" + colorStr;
     colorStr = colorStr.replaceAll("#", "");
@@ -35,7 +45,7 @@ class CategoryScreen extends StatelessWidget {
               Container(
                 height: 250.0,
                 width: double.infinity,
-                color: Color(getColorHexFromStr('#FDD148')),
+                color: Color(getColorHexFromStr('#31CF34')),
               ),
               Positioned(
                 bottom: 50.0,
@@ -44,8 +54,8 @@ class CategoryScreen extends StatelessWidget {
                   height: 400.0,
                   width: 400.0,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(200.0),
-                      color: Color(getColorHexFromStr('#CAA739'))
+                      borderRadius: BorderRadius.circular(190.0),
+                      color: Color(getColorHexFromStr('#388e3c'))
                           .withOpacity(0.4)),
                 ),
               ),
@@ -57,13 +67,13 @@ class CategoryScreen extends StatelessWidget {
                     width: 300.0,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(150.0),
-                        color: Color(getColorHexFromStr('#DA962C'))
+                        color: Color(getColorHexFromStr('#1b5e20'))
                             .withOpacity(0.5))),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  SizedBox(height: 15.0),
+                  SizedBox(height: 40.0),
                   Row(
                     children: <Widget>[
                       SizedBox(width: 15.0),
@@ -79,20 +89,23 @@ class CategoryScreen extends StatelessWidget {
                                 width: 2.0),
                             image: DecorationImage(
                                 image:
-                                    AssetImage('assets/images/ic_empty.png'))),
+                                AssetImage('assets/images/ic_empty.png'))),
                       ),
                       SizedBox(
-                          width: MediaQuery.of(context).size.width - 120.0),
-                    /*  Container(
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width - 120.0),
+                      Container(
                         alignment: Alignment.topRight,
                         child: IconButton(
                           icon: Icon(Icons.menu),
-                          onPressed: () {},
+                          onPressed: widget.onMenuPressed,
                           color: Colors.white,
                           iconSize: 30.0,
                         ),
                       ),
-                      SizedBox(height: 15.0),*/
+                      SizedBox(height: 15.0),
                     ],
                   ),
                   SizedBox(height: 50.0),
@@ -130,11 +143,10 @@ class CategoryScreen extends StatelessWidget {
                                   color: Color(getColorHexFromStr('#FEDF62')),
                                   size: 30.0),
                               contentPadding:
-                                  EdgeInsets.only(left: 15.0, top: 15.0),
+                              EdgeInsets.only(left: 15.0, top: 15.0),
                               hintText: 'Search',
                               hintStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontFamily: 'Raleway'))),
+                                  color: Colors.grey, fontFamily: 'Raleway'))),
                     ),
                   ),
                   SizedBox(height: 10.0)
